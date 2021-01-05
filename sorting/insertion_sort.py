@@ -4,13 +4,14 @@ def insertion_sort(lst):
     while i < l:
         k = i
         key = lst[i]
-        while (lst[k-1] > key) and (k>0):
-            lst[k] = lst[k-1]
+        while (lst[k - 1] > key) and (k > 0):
+            lst[k] = lst[k - 1]
             k = k - 1
         lst[k] = key
         i += 1
 
     return lst
+
 
 def test_insertion_sort(test_case):
     result = insertion_sort(list(test_case))
