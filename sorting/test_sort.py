@@ -2,6 +2,7 @@ import pytest
 import random
 from insertion_sort import insertion_sort
 from quick_sort import quick_sort
+from merge_sort import merge_sort
 
 num_lists = 100
 max_length = 100
@@ -9,6 +10,7 @@ lo, hi = -100, 100
 sort_algorithms = [
     insertion_sort,
     quick_sort,
+    merge_sort,
 ]
 
 
@@ -23,7 +25,7 @@ def generate_unsorted_list():
 
 
 unsorted_lists = [generate_unsorted_list() for _ in range(num_lists)]
-# unsorted_lists.append([])
+unsorted_lists.append([])
 
 
 @pytest.mark.parametrize("sort_algorithm", sort_algorithms)
