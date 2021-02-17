@@ -2,7 +2,29 @@
  - one and the number itself."""
 
 
-def is_prime(x):
+def is_prime(n):
+    if n == 2 or n == 3:
+        return True
+    if n < 2 or n % 2 == 0:
+        return False
+    if n < 9:
+        return True
+    if n % 3 == 0:
+        return False
+
+    # all primes > 3 are of the form 6n ± 1
+    f = 5
+    n_upper_limit = int(n ** 0.5)
+    while f <= n_upper_limit:
+        if n % f == 0:
+            return False
+        if n % (f+2) == 0:
+            return False
+        f += 6
+    return True
+
+
+def is_prime_brute_force(x):
     """Determine if x is a prime number"""
     if x <= 1:
         return False
@@ -12,7 +34,7 @@ def is_prime(x):
     return True
 
 
-def brute_force_divide(x1, x2):
+def prime_in_range_brute(x1, x2):
     """find prime number in range(x1, x2)"""
     lst = []
     for i in range(x1, x2):
@@ -146,23 +168,23 @@ def segmented_sieve(x):
 
 
 if __name__ == '__main__':
-    # assert not is_prime(-2)
-    # assert not is_prime(1)
-    # assert is_prime(2)
-    # assert is_prime(3)
-    # assert not is_prime(20)
-    # assert not is_prime(21)
+    assert not is_prime(-2)
+    assert not is_prime(1)
+    assert is_prime(2)
+    assert is_prime(3)
+    assert not is_prime(20)
+    assert not is_prime(21)
     #
-    # assert prime_in_range(-10, 10) == [2, 3, 5, 7]
+    # assert prime_in_range_brute(-10, 10) == [2, 3, 5, 7]
     #
-    # print(prime_in_range(1000, 1100))
-    # print(prime_in_range(10000, 10100))
-    # print(prime_in_range(100000, 100100))
-    # print(prime_in_range(1000000, 1000100))
-    # print(prime_in_range(10000000, 10000100))
-    # print(prime_in_range(100000000, 100000100))
+    # print(prime_in_range_brute(1000, 1100))
+    # print(prime_in_range_brute(10000, 10100))
+    # print(prime_in_range_brute(100000, 100100))
+    # print(prime_in_range_brute(1000000, 1000100))
+    # print(prime_in_range_brute(10000000, 10000100))
+    print("Primes in range of (100000000, 100000100)", prime_in_range_brute(100000000, 100000100))
 
     r = 1000
-    print("Brute force divide ------- ", brute_force_divide(0, r))
+    print("Brute force divide ------- ", prime_in_range_brute(0, r))
     # print("Method 2: ", prime_list_before(r))
     print("Euler's Sieve ------------ ", eulers_sieve(r))
